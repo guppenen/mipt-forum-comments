@@ -8,3 +8,5 @@
 /dataSources.local.xml
 /env/
 /.idea/
+/website/__pycache__/
+/instance/
