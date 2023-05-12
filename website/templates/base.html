@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title> {% block title %} {% endblock %} </title>
+    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+</head>
+<body>
+  <div class="h-16 w-full bg-black bg-opacity-50">
+    <div class="w-full h-full flex justify-center items-center">
+        <div
+            class="flex h-full items-center  hover:bg-black hover:bg-opacity-50">
+            <div class="mx-4 text-white">
+              <a class="nav-item nav-link" id="notes" href="/notes">Notes</a>
+            </div>
+            <div class=" h-8 w-px bg-gray-300"></div>
+        </div>
+        {% if user.is_authenticated %}
+        <div class="flex h-full items-center  hover:bg-black hover:bg-opacity-50">
+            <div class="mx-4 text-white"><a class="nav-item nav-link" id="private_notes" href="/private_notes">Private Notes</a></div>
+            <div class=" h-8 w-px bg-gray-300"></div>
+        </div>
+        <div class="flex h-full items-center  hover:bg-black hover:bg-opacity-50">
+            <div class="mx-4 text-white"><a class="nav-item nav-link" id="logout" href="/logout">Logout</a></div>
+            <div class=" h-8 w-px bg-gray-300"></div>
+        </div>
+        {% else %}
+        <div class="flex h-full items-center  hover:bg-black hover:bg-opacity-50">
+            <div class="mx-4 text-white"><a class="nav-item nav-link" id="login" href="/login">Login</a></div>
+            <div class=" h-8 w-px bg-gray-300"></div>
+        </div>
+        <div class="flex h-full  items-center hover:bg-black hover:bg-opacity-50">
+            <div class="mx-4 text-white"><a class="nav-item nav-link" id="register" href="/register">Register</a></div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+    <H1 class="text-blue-600"> {% block header %} {% endblock %} </H1>
+    <div class="container"> {% block container %} {% endblock %} </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+
+</body>
+
+</html>
