@@ -35,8 +35,9 @@ def notes():
 
     notes = db.session.query(Note).order_by(Note.id.desc()).limit(10)
     comments = db.session.query(Comment).order_by(Comment.id.desc()).limit(10)
- 
-    return render_template("notes.html", notes=notes, comments=comments, user=current_user)
+    reversecomments = comments[::-1]
+
+    return render_template("notes.html", notes=notes, comments=reversecomments, user=current_user)
 
 
 @views.route('/private_notes', methods=['POST', 'GET'])
@@ -60,7 +61,8 @@ def private_notes():
                 db.session.commit()
                 print("СОЗДАНА НОВАЯ ЗАПИСЬ")
 
-    notes = db.session.query(Note).order_by(Note.id.desc()).limit(10)
-    comments = db.session.query(Comment).order_by(Comment.id.desc()).limit(10)
+    notes = db.session.query(Note).order_by(Note.id.desc()).limit(2)
+    comments = db.session.query(Comment).order_by(Comment.id.desc()).limit(5)
+    reversecomments = comments[::-1]
  
-    return render_template("private_notes.html", notes=notes, comments=comments, user=current_user)
+    return render_template("private_notes.html", notes=notes, comments=reversecomments, user=current_user)
